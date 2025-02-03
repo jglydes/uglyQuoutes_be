@@ -7,14 +7,14 @@ const openai = new OpenAI({
 // Generate Quote Controller
 const generateQuote = async (req, res) => {
   console.log("generate quotes body: ", req.body)
-  const { keyword, language } = req.body;
+  const { keyword, number, language } = req.body;
 
   if (!keyword) {
     return res.status(400).json({ error: "Keyword is required" });
   }
 
   try {
-    const prompt = `Generate 6 humorous quotes about ${keyword} in a naughty, witty, funny and hilarious tone in ${language}. Each quote should be 1 sentence long.`;
+    const prompt = `Generate ${number} humorous quotes about ${keyword} in a naughty, witty, funny and hilarious tone in ${language}. Each quote should be 1 sentence long.`;
 
 
     const response = await openai.chat.completions.create({
